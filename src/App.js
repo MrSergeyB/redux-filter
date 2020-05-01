@@ -20,6 +20,7 @@ function App() {
   const [price, setPrice] = useState("");
   const [editingInputId, setEditingInputId] = useState(null);
 
+  //Updating user inputs
   const updateUserInputs = (task, price) => {
     setUserInputs([
       ...userInputs,
@@ -31,6 +32,7 @@ function App() {
     ]);
   };
 
+  //Delete inputs
   const handleDelete = (id) => {
     const filteredInputs = userInputs.filter((input) => {
       return input.id !== id;
@@ -44,6 +46,7 @@ function App() {
     }
   };
 
+  //Editing mode init
   const editButtonPressed = (id, task, price) => {
     setEditMode(!editMode);
     setTask(task);
@@ -51,6 +54,7 @@ function App() {
     setEditingInputId(id);
   };
 
+  //Edit inputs
   const handleEdit = (task, price) => {
     const filteredInputs = userInputs.filter((input) => {
       return input.id !== editingInputId;
