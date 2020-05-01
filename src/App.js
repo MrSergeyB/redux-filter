@@ -1,16 +1,19 @@
 import React, {useState} from "react";
 import DisplayInput from "./components/display-inputs";
 import InputForm from "./components/input-form";
+import Filter from "./components/filter";
 import "./App.css";
 import {v4 as uuidv4} from "uuid";
 uuidv4();
 
+const data = [
+  {id: 1, task: "Замена стёкл", price: "14"},
+  {id: 2, task: "Ремонт окон", price: "15"},
+  {id: 3, task: "Ремонт дверей", price: "25"},
+];
+
 function App() {
-  const [userInputs, setUserInputs] = useState([
-    {id: 1, task: "Замена стёкл", price: "14"},
-    {id: 2, task: "Ремонт окон", price: "15"},
-    {id: 3, task: "Ремонт дверей", price: "25"},
-  ]);
+  const [userInputs, setUserInputs] = useState(data);
 
   const [editMode, setEditMode] = useState(false);
   const [task, setTask] = useState("");
@@ -69,8 +72,21 @@ function App() {
     setEditMode(!editMode);
   };
 
+  //Filter inputs
+  const handleFilter = (fil) => {
+    if (fil.length > 0) {
+      const filteredInput = userInputs.filter((input) => {
+        return input.task.toLowerCase().includes(fil.toLowerCase());
+      });
+      setUserInputs(filteredInput);
+    } else if (fil.length === 0) {
+      setUserInputs(data);
+    }
+  };
+
   return (
     <div className="App">
+      <Filter handleFilter={handleFilter} />
       <InputForm
         updateUserInputs={updateUserInputs}
         editMode={editMode}
@@ -81,6 +97,7 @@ function App() {
         setTask={setTask}
         setPrice={setPrice}
       />
+
       <DisplayInput
         userInputs={userInputs}
         handleDelete={handleDelete}

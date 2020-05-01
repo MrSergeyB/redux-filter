@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 import "./input-from.css";
 
 const InputForm = ({
@@ -30,7 +30,7 @@ const InputForm = ({
 
   return (
     <form onSubmit={handleSubmit} className="form">
-      <label>Вид ремонта</label>
+      <label>Вид услуги</label>
       <input
         className="task-input"
         type="text"
@@ -38,7 +38,7 @@ const InputForm = ({
         onChange={(e) => setTask(e.target.value)}
         autoFocus
       />
-      <label>Цена</label>
+      <label>Стоимость услуги</label>
       <input
         className="price-input"
         type="number"
