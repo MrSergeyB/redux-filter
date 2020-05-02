@@ -1,8 +1,10 @@
 import React from "react";
 import "./display-inputs.css";
+import {connect} from "react-redux";
 import SingleInput from "../single-input";
+import PropTypes from "prop-types";
 
-const DisplayInputs = ({userInputs, handleDelete, editButtonPressed}) => {
+const DisplayInputs = ({userInputs}) => {
   return (
     <div className="display-input-box">
       {userInputs.map((input) => {
@@ -12,8 +14,6 @@ const DisplayInputs = ({userInputs, handleDelete, editButtonPressed}) => {
             id={input.id}
             task={input.task}
             price={input.price}
-            handleDelete={handleDelete}
-            editButtonPressed={editButtonPressed}
           />
         );
       })}
@@ -21,4 +21,11 @@ const DisplayInputs = ({userInputs, handleDelete, editButtonPressed}) => {
   );
 };
 
-export default DisplayInputs;
+DisplayInputs.propTypes = {
+  userInputs: PropTypes.arrayOf(PropTypes.object),
+};
+
+const mapStateToProps = (state) => ({
+  userInputs: state.inputs.list,
+});
+export default connect(mapStateToProps)(DisplayInputs);

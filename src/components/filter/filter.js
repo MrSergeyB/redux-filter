@@ -1,5 +1,6 @@
 import React, {useState} from "react";
-import "./filter.css";
+import {connect} from "react-redux";
+import {handleFilter} from "../../actions/inputActions";
 import "./filter.css";
 
 const Filter = ({handleFilter}) => {
@@ -23,4 +24,6 @@ const Filter = ({handleFilter}) => {
   );
 };
 
-export default Filter;
+const mapStateToProps = (state) => ({});
+
+export default connect(mapStateToProps, {handleFilter})(Filter);
